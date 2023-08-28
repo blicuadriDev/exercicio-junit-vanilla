@@ -27,12 +27,32 @@ public class FinancingTests {
 			//action
 			Financing f1 = new Financing (100000.0, 2000.0, 20);
 		});
-
+	}
+	
+	@Test
+	public void setAmountShouldUpdateAmountWhenValidData() {
+		//Arrange
+		Financing f1 = new Financing(100000.0, 2000.0, 80);
 		
-
+		//Act
+		f1.setTotalAmount(90000.0);
+		
+		//Assert
+		Assertions.assertEquals(90000.0, f1.getTotalAmount());
 	}
 	
 	
+	@Test
+	public void setAmountShouldNotUpdateAmountWhenInvalidData() {
+		//Assert
+		Assertions.assertThrows(IllegalArgumentException.class, ()->{
+			//Arrange
+			Financing f1 = new Financing(100000.0, 2000.0, 80);
+			
+			//Act
+			f1.setTotalAmount(110000.0);
+		});
+	}
 	
 	
 
