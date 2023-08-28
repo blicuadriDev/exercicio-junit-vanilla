@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import entities.Financing;
+import tests.factory.FinancingFactory;
 
 public class FinancingTests {
 	
@@ -11,7 +12,7 @@ public class FinancingTests {
 	public void constructorShouldCreateObjectWhenValidData() {
 		
 		//action
-		Financing f1 = new Financing (100000.0, 2000.0, 80);
+		Financing f1 = FinancingFactory.financingAtTheEdgeOfValidation();
 		
 		//assertions
 		Assertions.assertEquals(100000.0, f1.getTotalAmount());
@@ -25,14 +26,14 @@ public class FinancingTests {
 		
 		Assertions.assertThrows(IllegalArgumentException.class, () -> {
 			//action
-			Financing f1 = new Financing (100000.0, 2000.0, 20);
+			Financing f1 = FinancingFactory.financingInvalid();
 		});
 	}
 	
 	@Test
 	public void setAmountShouldUpdateAmountWhenValidData() {
 		//Arrange
-		Financing f1 = new Financing(100000.0, 2000.0, 80);
+		Financing f1 = FinancingFactory.financingAtTheEdgeOfValidation();
 		
 		//Act
 		f1.setTotalAmount(90000.0);
@@ -47,7 +48,7 @@ public class FinancingTests {
 		//Assert
 		Assertions.assertThrows(IllegalArgumentException.class, ()->{
 			//Arrange
-			Financing f1 = new Financing(100000.0, 2000.0, 80);
+			Financing f1 = FinancingFactory.financingAtTheEdgeOfValidation();
 			
 			//Act
 			f1.setTotalAmount(110000.0);
