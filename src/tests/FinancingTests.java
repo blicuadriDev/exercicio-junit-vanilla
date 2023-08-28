@@ -56,5 +56,31 @@ public class FinancingTests {
 	}
 	
 	
+	
+	@Test
+	public void setIncomeShouldUpdateWhenValidData() {
+		//Arrange
+		Financing f1 = FinancingFactory.financingAtTheEdgeOfValidation();
+		
+		//Act
+		f1.setIncome(2200.0);
+		
+		//Assert
+		Assertions.assertEquals(2200.0, f1.getIncome());
+	}
+	
+	
+	@Test
+	public void setIncomeShouldNotUpdateWhenInvalidData() {
+		//Assert
+		Assertions.assertThrows(IllegalArgumentException.class, ()->{
+			//Arrange
+			Financing f1 = FinancingFactory.financingAtTheEdgeOfValidation();
+			
+			//Act
+			f1.setIncome(1900.0);;
+		});
+	}
+	
 
 }
