@@ -44,7 +44,7 @@ public class FinancingTests {
 	
 	
 	@Test
-	public void setAmountShouldNotUpdateAmountWhenInvalidData() {
+	public void setAmountShouldThrowIllegalArgumentExceptionWhenInvalidData() {
 		//Assert
 		Assertions.assertThrows(IllegalArgumentException.class, ()->{
 			//Arrange
@@ -71,16 +71,56 @@ public class FinancingTests {
 	
 	
 	@Test
-	public void setIncomeShouldNotUpdateWhenInvalidData() {
+	public void setIncomeShouldThrowIllegalArgumentExceptionWhenInvalidData() {
 		//Assert
 		Assertions.assertThrows(IllegalArgumentException.class, ()->{
 			//Arrange
 			Financing f1 = FinancingFactory.financingAtTheEdgeOfValidation();
 			
 			//Act
-			f1.setIncome(1900.0);;
+			f1.setIncome(1900.0);
 		});
 	}
 	
 
+	
+	@Test
+	public void setMonthShouldUpdateWhenValidData() {
+		//Arrange
+		Financing f1 = FinancingFactory.financingAtTheEdgeOfValidation();
+		
+		//Act
+		f1.setMonths(81);
+		
+		//Assert
+		Assertions.assertEquals(81, f1.getMonths());
+	}
+	
+	
+	@Test
+	public void setMonthShouldThrowIllegalArgumentExceptionWhenInvalidData() {
+		//Assert
+		Assertions.assertThrows(IllegalArgumentException.class, ()->{
+			//Arrange
+			Financing f1 = FinancingFactory.financingAtTheEdgeOfValidation();
+			
+			//Act
+			f1.setMonths(79);
+		});
+	}
+	
+	@Test
+	public void entryShouldCalculatedEntryValueCorrectly() {
+		//Arrenge
+		Financing f1 = FinancingFactory.financingAtTheEdgeOfValidation();
+		
+		//Act
+		f1.entry();
+		
+		//Assert
+		Assertions.assertTrue(20000.0 == f1.entry());
+	}
+	
+	
+	
 }
