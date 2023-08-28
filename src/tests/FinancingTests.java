@@ -122,5 +122,15 @@ public class FinancingTests {
 	}
 	
 	
+	@Test
+	public void quotaShouldBeCalculatedCorrectly() {
+		//Arrenge & Act
+		Financing f1 = FinancingFactory.financingAtTheEdgeOfValidation();
+		
+		//Assert
+		Assertions.assertTrue(1000.0 == f1.quota());
+	}
+	
+	
 	
 }
